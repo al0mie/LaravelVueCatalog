@@ -27,7 +27,9 @@ class CategoryController extends Controller
     public function store(CategoryRequest $request)
     {
         $category = new Category();
+
         $this->categoryService->saveCategory($request, $category);
+
         return response($category, Response::HTTP_CREATED);
     }
 
@@ -39,12 +41,21 @@ class CategoryController extends Controller
     public function update(CategoryRequest $request, $id)
     {
         $category = Category::findOrFail($id);
+
         $this->categoryService->saveCategory($request, $category);
+
         return response($category, Response::HTTP_CREATED);
     }
 
     public function destroy($id)
     {
         Category::destroy($id);
+    }
+
+    public function categoryProducts($id)
+    {
+        $category = Category::findOrFail($id);
+       
+        return $category->products;
     }
 }
