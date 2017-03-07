@@ -7,7 +7,6 @@ class ProductService
     /**
      * @param $request
      * @param $product
-     * @internal param $student
      */
     public function uploadAvatar($request, $product)
     {
@@ -39,7 +38,6 @@ class ProductService
     /**
      * @param $request
      * @param $product
-     * @internal param $student
      */
     public function saveProduct($request, $product)
     {
