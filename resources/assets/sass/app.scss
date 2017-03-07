@@ -1,9 +1,64 @@
-
 // Fonts
-@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
+//@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
 
 // Variables
-@import "variables";
+//@import "variables";
 
 // Bootstrap
-@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+//@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
+// Vuetable
+@import "vuetable";
+
+// SweetAlert2
+@import "../../../node_modules/sweetalert2/src/sweetalert2";
+
+
+[v-cloak] {
+  display: none;
+}
+.mrg-2em {
+  margin: 2em auto;
+}
+.mrg-top-1em {
+  margin-top: 1em;
+}
+.image-input {
+  position: relative;
+  overflow: hidden
+}
+.image-input input[type=file] {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  padding: 0;
+  font-size: 25px;
+  cursor: pointer;
+  opacity: 0;
+  filter: alpha(opacity=0);
+}
+.image-preview {;
+  max-height: 215px;
+}
+.avatar {
+  max-height: 100px;
+}
+.datepicker {
+  display: block !important;
+}
+.table > thead > tr > th,
+.table > tbody > tr > th,
+.table > tfoot > tr > th,
+.table > thead > tr > td,
+.table > tbody > tr > td,
+.table > tfoot > tr > td {
+  vertical-align: middle !important;
+}
+.alert {
+  width: 20em;
+}
+.alert.top-right {
+  top: 1em !important;
+  right: 1em !important;;
+}
