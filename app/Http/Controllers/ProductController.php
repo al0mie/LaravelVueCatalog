@@ -17,7 +17,9 @@ class ProductController extends Controller
 
     public function index()
     {
-        $this->productService->test();
+        $products = Product::orderBy('id');
+
+        return $products->paginate(50);
     }
 
     public function store()
