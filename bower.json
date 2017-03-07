@@ -1,0 +1,6 @@
+{
+  "name": "test",
+  "dependencies": {
+    "bulma": "^0.3.2"
+  }
+}

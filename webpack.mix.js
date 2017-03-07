@@ -11,5 +11,12 @@ const { mix } = require('laravel-mix');
  |
  */
 
+
 mix.js('resources/assets/js/app.js', 'public/js')
-   .sass('resources/assets/sass/app.scss', 'public/css');
+    .sass('resources/assets/sass/app.scss', 'public/css')
+    .version()
+    .sourceMaps();
+
+mix.styles([
+        'resources/assets/bower_components/bulma/css/bulma.css'
+    ], 'public/css/vendor.css');

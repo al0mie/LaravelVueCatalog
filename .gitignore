@@ -7,3 +7,8 @@
 Homestead.json
 Homestead.yaml
 .env
+/resources/assets/bower_components
+/public/css
+/public/js
+/public/mix-manifest.json
+/public/fonts
