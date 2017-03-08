@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Category;
 
 class Product extends Model
 {
@@ -25,6 +26,6 @@ class Product extends Model
 
     public function category()
     {
-        return $this->belongsTo('category_id', 'categories');
+        return $this->belongsTo(Category::class, 'category_id');
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Baum\Node;
+use App\Models\Product;
 
 /**
  * Category
@@ -105,6 +106,6 @@ class Category extends Node
 
     public function products()
     {
-        return $this->hasMany('category_id', 'products');
+        return $this->hasMany(Product::class, 'category_id');
     }
 }
