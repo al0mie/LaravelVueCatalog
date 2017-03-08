@@ -17,19 +17,19 @@ var router = new VueRouter({
 
         {
             path: '/products/create',
-            name: 'create',
+            name: 'products-create',
             component: require('./components/product/Create.vue')
         },
 
         {
             path: '/products/show/:productId',
-            name: 'show',
+            name: 'products-show',
             component: require('./components/product/Show.vue')
         },
 
         {
             path: '/products/edit/:productId',
-            name: 'edit',
+            name: 'products-edit',
             component: require('./components/product/Edit.vue')
         }
     ]

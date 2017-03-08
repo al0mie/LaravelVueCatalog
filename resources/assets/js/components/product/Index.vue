@@ -6,6 +6,7 @@
                 :pagination-path="paginationPath"
                 :per-page="perPage"
                 :fields="fields"
+                :data-resource="resource"
                 :class="classes"
                 :sort-order="sortOrder"
                 :table-class="tableClass"
@@ -21,11 +22,13 @@
 </template>
 
 <script>
+    console.log(this);
     import bus from '../../Bus.js'
     export default {
         data() {
             return {
                 url: '/api/products',
+                resource: 'products',
                 paginationPath: '',
                 search: '',
                 perPage: 10,
@@ -96,46 +99,40 @@
         events:
         {
             'showData'(rowData) {
-                this.$route.router.go({ name: 'show', params: { productId: rowData.id } })
+                router.push({ name: 'index'});
             },
             'editData'(rowData) {
                 this.$route.router.go({ name: 'edit', params: { productId: rowData.id } })
             },
             'deleteData'(rowData) {
+                alert('xe');
                 swal({
                     title: 'Confirmation',
-                    text: 'Are you sure you want to delete this data?',
+                    text: 'Are you sure you want to delete this?',
                     type: 'question',
                     showCancelButton: true,
                     confirmButtonText: 'Yes',
                     showLoaderOnConfirm: true
                 }).then(() => {
                     swal.disableButtons();
+                    console.log(rowData);
 
-                let formData = new FormData();
+                    let formData = new FormData();
 
-                formData.set('_method', 'DELETE');
+                    formData.set('_method', 'DELETE');
 
-                let url = this.url + '/' + rowData.id;
+                    let url = this.url + '/' + rowData.id;
 
-                Vue.http.post(url, formData)
+                    Vue.http.post(url, formData)
                         .then(response => {
-                    swal(
-                    'Success',
-                    'Your data has been deleted.',
-                    'success'
-            );
+                            swal('Success', 'Your data has been deleted.', 'success');
+                            $('table').trigger('vuetable:refresh');
+                        }).catch(response => {
+                                swal('Error', 'Failed to delete your data.', 'error');
+                            });
+                    })
 
-                this.$broadcast('vuetable:refresh');
-            }).catch(response => {
-                    swal(
-                    'Error',
-                    'Failed to delete your data.',
-                    'error'
-            );
-            });
-            })
-            },
+                },
+            }
         }
-    }
 </script>
