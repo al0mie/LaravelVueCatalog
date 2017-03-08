@@ -22,7 +22,7 @@ var router = new VueRouter({
         },
 
         {
-            path: '/products/show/:productId',
+            path: '/products/:productId',
             name: 'products-show',
             component: require('./components/product/Show.vue')
         },
