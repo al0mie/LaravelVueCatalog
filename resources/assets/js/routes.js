@@ -1,7 +1,7 @@
 import VueRouter from 'vue-router'
 
 var router = new VueRouter({
-    mode: 'history',
+
     routes: [
         {
             path: '/',
@@ -16,19 +16,19 @@ var router = new VueRouter({
         },
 
         {
-            path: 'products/create',
+            path: '/products/create',
             name: 'create',
             component: require('./components/product/Create.vue')
         },
 
         {
-            path: 'products/show/:productId',
+            path: '/products/show/:productId',
             name: 'show',
             component: require('./components/product/Show.vue')
         },
 
         {
-            path: 'products/edit/:productId',
+            path: '/products/edit/:productId',
             name: 'edit',
             component: require('./components/product/Edit.vue')
         }

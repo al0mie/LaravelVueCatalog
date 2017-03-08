@@ -1,9 +1,3 @@
-var bus = new Vue();
-
-bus.$on('inc', function(num){
-    alert(num);
-});
-
 const Vuetable = require('vuetable-2/src/components/Vuetable.vue');
 const VuetablePagination = require('vuetable-2/src/components/VuetablePagination.vue');
 const VuetablePaginationDropdown = require('vuetable-2/src/components/VuetablePaginationDropdown.vue');
@@ -20,6 +14,7 @@ const ImageInput = require('./components/ImageInput.vue');
 const CRUDForm = require('./components/CRUDForm.vue');
 const Item = require('./components/Item.vue');
 const ItemList = require('./components/ItemList.vue');
+const ProductIndex = require('./components/product/Index.vue');
 
 var data = {
     name: 'My Tree',
@@ -59,7 +54,7 @@ Vue.component('itemm', {
     },
 
 });
-
+Vue.component('product-index', ProductIndex);
 Vue.component('item-list', ItemList);
 
 Vue.component('vuetable', Vuetable);

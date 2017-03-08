@@ -19,7 +19,7 @@
         <button
             type="button"
             class="button is-danger"
-            title="Update"
+            title="Delete"
             @click="deleteData(rowData)">
             <span> Delete</span>
         </button>
