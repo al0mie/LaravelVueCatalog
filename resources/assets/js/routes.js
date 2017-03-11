@@ -1,7 +1,7 @@
 import VueRouter from 'vue-router'
 
 var router = new VueRouter({
-
+    mode: 'history',
     routes: [
         {
             path: '/',
