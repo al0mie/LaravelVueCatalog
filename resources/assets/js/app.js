@@ -14,11 +14,25 @@ require('./bootstrap');
  */
 import Vue from 'vue';
 import router from './routes';
+import navbar from './components/Menu';
 
 require('./packages');
 require('./components');
 
 
 new Vue({
-    router
+    template: `
+      <div>
+        <navbar />
+        <section class="section">
+          <div class="container is-fluid">
+            <router-view></router-view>
+          </div>
+        </section>
+      </div>
+      `,
+    router,
+    components: {
+        navbar
+    }
 }).$mount('#app');
