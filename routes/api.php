@@ -21,4 +21,5 @@ Route::resource('/categories', 'CategoryController', [
     'except' => ['create', 'edit']
 ]);
 
+Route::get('/categoriesTree', ['as' => 'categoriesTree', 'uses' => 'CategoryController@buildCategoryTree']);
 Route::get('categories/{categoryId}/products', ['as' => 'categoryProducts', 'uses' => 'CategoryController@categoryProducts']);

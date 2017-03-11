@@ -58,4 +58,9 @@ class CategoryController extends Controller
        
         return $category->products;
     }
+
+    public function buildCategoryTree()
+    {
+        return $this->categoryService->buildTree();
+    }
 }
