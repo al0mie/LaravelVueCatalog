@@ -17,7 +17,7 @@ Route::resource('/products', 'ProductController', [
     'except' => ['create', 'edit']
 ]);
 
-Route::resource('/categories', 'ProductController', [
+Route::resource('/categories', 'CategoryController', [
     'except' => ['create', 'edit']
 ]);
 
