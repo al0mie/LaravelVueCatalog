@@ -1,4 +1,5 @@
 <template>
+<div>
     <form @submit.prevent="submit" novalidate v-cloak>
         <div class="row">
             <div class="col-md-6 text-center">
@@ -18,9 +19,9 @@
                     </label>
 
                     <input
-                        v-model="student.name"
+                        v-model="product.name"
                         type="text"
-                        class="form-control"
+                        class="input"
                         id="name"
                         placeholder="Name...">
 
@@ -31,69 +32,39 @@
 
                 <div
                     class="form-group"
-                    :class="{ 'has-error': errors['email'] }">
-                    <label class="control-label" for="email">
-                        Email
+                    :class="{ 'has-error': errors['description'] }">
+                    <label class="control-label" for="description">
+                        Description
                     </label>
 
-                    <input
-                        v-model="student.email"
-                        type="email"
-                        class="form-control"
-                        id="email"
-                        placeholder="Email...">
+                    <textarea
+                        v-model="product.description"
+                        class="textarea"
+                        id="description"
+                        placeholder="Description...">
 
-                    <span class="help-block" v-for="error of errors['email']">
-                        {{ error }}
-                    </span>
-                </div>
+                    </textarea>
 
-                <div
-                    class="form-group"
-                    :class="{ 'has-error': errors['birth_date'] }">
-                    <label class="control-label">
-                        Birth Date
-                    </label>
-
-                    <datepicker
-                        :value.sync="student.birth_date"
-                        format="yyyy-MM-dd"
-                        width="100%"
-                        placeholder="Birth Date"
-                        readonly>
-                    </datepicker>
-
-                    <span class="help-block" v-for="error of errors['birth_date']">
+                    <span class="help-block" v-for="error of errors['description']">
                         {{ error }}
                     </span>
                 </div>
             </div>
         </div>
 
-        <div class="row mrg-top-1em">
-            <div class="col-md-12 text-center">
-                <button class="btn btn-primary">
-                    <i class="glyphicon glyphicon-save"></i>
-                    Save
-                </button>
-            </div>
-        </div>
+        <button class="button is-large is-info is-fullwidth">
+            Save
+        </button>
     </form>
-
-    <notify :alert="alert"></notify>
+</div>
 </template>
 
 <script>
     export default {
         props: {
-            student: {
+            product: {
                 type: Object,
                 required: true
-            },
-        },
-        created() {
-            if(! this.student.birth_date) {
-                this.student.birth_date = moment().format('YYYY-MM-DD')
             }
         },
         data() {
@@ -102,16 +73,16 @@
                     show: false,
                     type: null,
                     title: null,
-                    message: null,
+                    message: null
                 },
                 errors: {}
             }
         },
         computed: {
             imageSrc() {
-                if(this.student.avatar instanceof File === false) {
-                    if(this.student.avatar !== undefined) {
-                        let avatar = this.student.avatar;
+                if(this.product.avatar instanceof File === false) {
+                    if(this.product.avatar !== undefined) {
+                        let avatar = this.product.avatar;
 
                         if(! avatar) {
                             avatar = 'default.png';
@@ -126,28 +97,28 @@
             submit() {
                 let formData = new FormData();
 
-                if(this.student.avatar instanceof File) {
-                    formData.set('avatar', this.student.avatar);
+                if (this.product.avatar instanceof File) {
+                    formData.set('avatar', this.product.avatar);
                 }
 
-                formData.set('name', this.student.name);
-                formData.set('email', this.student.email);
-                formData.set('birth_date', this.student.birth_date);
+                formData.set('name', this.product.name);
+                formData.set('description', this.product.description);
 
-                this.$dispatch('submitted', formData);
+                this.$emit('submitted', formData);
+                alert('v');
             }
         },
         events: {
             'avatarUpdated'(imageFile) {
-                this.student.avatar = imageFile;
+                this.product.avatar = imageFile;
             },
             'formErrors'(errors) {
-                this.errors = errors;
+                this.product = errors;
             },
             'showAlert'(alert) {
                 this.alert = alert;
 
-                this.$broadcast('notify', this.alert);
+                this.$emit('notify', this.alert);
 
                 this.errors = {};
             },

@@ -46,16 +46,46 @@ var data = {
 };
 
 // define the item component
-console.log(Item);
-Vue.component('itemm', {
+// define the item component
+Vue.component('item-list', {
     template: Item.template,
     props: {
         model: Object
     },
-
+    data: function () {
+        return {
+            open: false
+        }
+    },
+    computed: {
+        isFolder: function () {
+            return this.model.children &&
+                this.model.children.length
+        }
+    },
+    methods: {
+        toggle: function () {
+            if (this.isFolder) {
+                this.open = !this.open
+            }
+        },
+        changeType: function () {
+            if (!this.isFolder) {
+                Vue.set(this.model, 'children', [])
+                this.addChild()
+                this.open = true
+            }
+        },
+        addChild: function () {
+            this.model.children.push({
+                name: 'new stuff'
+            })
+        }
+    }
 });
+
 Vue.component('product-index', ProductIndex);
-Vue.component('item-list', ItemList);
+Vue.component('list', ItemList);
 
 Vue.component('vuetable', Vuetable);
 Vue.component('vuetable-pagination', VuetablePagination);

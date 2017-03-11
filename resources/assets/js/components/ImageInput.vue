@@ -1,23 +1,25 @@
 <template>
-    <div class="row">
-        <div class="col-md-12">
-            <img
-                class="img-thumbnail img-reponsive image-preview"
-                :src="imageSrc"
-                :alt="imageName"
-                :title="imageName">
+    <div>
+        <div class="row">
+            <div class="col-md-12">
+                <img
+                    class="img-thumbnail img-reponsive image-preview"
+                    :src="imageSrc"
+                    :alt="imageName"
+                    :title="imageName">
+            </div>
         </div>
-    </div>
 
-    <div class="row mrg-top-1em">
-        <div class="col-md-12">
-            <div class="image-input btn btn-default">
-                <span>
-                    <i class="glyphicon glyphicon-camera"></i>
-                    Change
-                </span>
+        <div class="row mrg-top-1em">
+            <div class="col-md-12">
+                <div class="image-input btn btn-default">
+                    <span>
+                        <i class="glyphicon glyphicon-camera"></i>
+                        Change
+                    </span>
 
-                <input @change="preview($event)" name="image" type="file" accept="image/*">
+                    <input @change="preview($event)" name="image" type="file" accept="image/*">
+                </div>
             </div>
         </div>
     </div>
