@@ -63,11 +63,3 @@
         </ul>
     </nav>
 </template>
-
-<script>
-    import PaginationMixin from 'vuetable/src/components/VuetablePaginationMixin.vue';
-
-    export default {
-        mixins: [PaginationMixin],
-    }
-</script>
