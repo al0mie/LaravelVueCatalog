@@ -43,6 +43,7 @@ class ProductService
     {
         $product->name = $request->name;
         $product->description = $request->description;
+        $product->category_id = $request->category_id;
         $product->save();
     }
 }

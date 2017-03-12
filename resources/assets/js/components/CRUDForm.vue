@@ -29,7 +29,7 @@
                         {{ error }}
                     </span>
                 </div>
-
+                <category-select v-on:update-category="updateCategory"> </category-select>
                 <div
                     class="form-group"
                     :class="{ 'has-error': errors['description'] }">
@@ -94,6 +94,10 @@
             }
         },
         methods: {
+            updateCategory(categoryId) {
+                alert('X');
+                this.categoryId = categoryId;
+            },
             submit() {
                 let formData = new FormData();
 
@@ -102,6 +106,7 @@
                 }
 
                 formData.set('name', this.product.name);
+                formData.set('category_id', this.categoryId);
                 formData.set('description', this.product.description);
 
                 this.$emit('submitted', formData);

@@ -63,4 +63,9 @@ class CategoryController extends Controller
     {
         return $this->categoryService->buildTree();
     }
+
+    public function categoryList()
+    {
+        return Category::all();
+    }
 }

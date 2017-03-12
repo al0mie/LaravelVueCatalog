@@ -2,7 +2,7 @@
 <div>
     <form @submit.prevent="submit" novalidate v-cloak>
         <div class="row">
-
+            <category-select v-on:update-category="updateCategory"> </category-select>
             <div class="col-md-6">
                 <div
                     class="form-group"
@@ -53,10 +53,15 @@
         },
 
         methods: {
+            updateCategory(categoryId) {
+                this.parentId = categoryId;
+            },
+
             submit() {
                 let formData = new FormData();
 
                 formData.set('name', this.category.name);
+                formData.set('category_id', this.parentId);
 
                 this.$emit('submitted', formData);
             }
