@@ -13,7 +13,7 @@
                 :ascending-icon="ascendingIcon"
                 :descending-icon="descendingIcon"
                 :append-params="appendParams"
-                v-on:custom-action="allo"
+                v-on:refresh-table="refreshTable"
         ></vuetable>
     </div>
 
@@ -28,13 +28,7 @@
         watch:{
             'category': {
                 handler:function() {
-                    this.url = '/api/products?category_id=' + this.category;
-                    this.$refs.vuetable.reload();
-
-                    this.$nextTick(function () {
-                        this.url = '/api/products?category_id=' + this.category;
-                        this.$refs.vuetable.reload();
-                    });
+                    this.refreshTable();
                 }
             }
         },
@@ -104,8 +98,18 @@
             }
         },
         methods: {
-            allo() {
-                alert('zz');
+            refreshTable() {
+                if (this.category) {
+                    this.url = '/api/products?category_id=' + this.category;
+                }
+                this.$refs.vuetable.reload();
+
+                this.$nextTick(function () {
+                    if (this.category) {
+                        this.url = '/api/products?category_id=' + this.category;
+                    }
+                    this.$refs.vuetable.reload();
+                });
             }
         },
         events: {
