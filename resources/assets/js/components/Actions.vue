@@ -2,7 +2,7 @@
     <div class="btn-group-vertical" role="group" aria-label="Actions" v-cloak>
         <button
             type="button"
-            class="button is-primary"
+            class="button is-primary is-fullwidth"
             title="Show"
             @click="showData(rowData)">
             <span> Detail </span>
@@ -10,7 +10,7 @@
 
         <button
             type="button"
-            class="button is-warning"
+            class="button is-warning is-fullwidth"
             title="Edit"
             @click="editData(rowData)">
             <span> Edit </span>
@@ -18,7 +18,7 @@
 
         <button
             type="button"
-            class="button is-danger"
+            class="button is-danger is-fullwidth"
             title="Delete"
             @click="deleteData(rowData)">
             <span> Delete</span>
@@ -39,8 +39,6 @@
         },
         methods: {
             showData(rowData) {
-                console.log(this);
-                this.$parent.$emit('custom-action');
                 let $resource = $('table').attr('data-resource');
                 router.push({ name: $resource + '-show', params: {'productId': rowData.id }});
             },
@@ -64,6 +62,7 @@
                     var url = 'api' + '/' + $resource + '/' + rowData.id;
                     Vue.http.delete(url, formData)
                         .then(response => {
+                            this.$parent.$emit('refresh-table');
                             swal('Success', 'Your data has been deleted.', 'success');
                         }).catch(response => {
                             swal('Error', 'Failed to delete your data.', 'error');
