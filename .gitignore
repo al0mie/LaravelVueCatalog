@@ -12,3 +12,4 @@ Homestead.yaml
 /public/js
 /public/mix-manifest.json
 /public/fonts
+!/public/storage/avatars/default.png

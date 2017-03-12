@@ -114,7 +114,6 @@
         },
         events: {
             'showData'(rowData) {
-                console.log(this);
                 router.push({ name: 'index'});
             },
             'editData'(rowData) {
