@@ -17,10 +17,8 @@ class CategoryService
     }
 
     public function buildTree(){
-        $categories = Category::whereNull('parent_id')->get();
-
+        $categories = Category::all()->toHierarchy();
         $tree = [];
-        $t = null;
         foreach ($categories as $category) {
             $tree []= $this->buildCategoryPath($category);
         }
@@ -33,6 +31,7 @@ class CategoryService
 
         if (!$node->children->count()) {
             $data = ['name' => $node->name, 'id' => $node->id];
+            
             return $data;
         } else {
             foreach ($node->children as $child) {
@@ -40,6 +39,7 @@ class CategoryService
                 $data['id'] = $node->id;
                 $data['children'][] = $this->buildCategoryPath($child);
             }
+            
             return $data;
         }
 

@@ -14,11 +14,12 @@ const ImageInput = require('./components/ImageInput.vue');
 const CRUDForm = require('./components/CRUDForm.vue');
 const ItemList = require('./components/ItemList.vue');
 const ProductIndex = require('./components/product/Index.vue');
+const BackButton = require('./components/BackButton.vue');
 
 // define the item component
 Vue.component('item-list', ItemList);
 Vue.component('product-index', ProductIndex);
-
+Vue.component('back-button', BackButton);
 
 Vue.component('vuetable', Vuetable);
 Vue.component('vuetable-pagination', VuetablePagination);

@@ -31,9 +31,7 @@
                 </div>
             </div>
         </div>
-        <div class="has-text-centered">
-            <router-link class="button is-primary is-large" :to="{ name: 'products-index'}">Back</router-link>
-        </div>
+        <back-button> </back-button>
     </div>
 </template>
 

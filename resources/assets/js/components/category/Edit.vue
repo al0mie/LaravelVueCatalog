@@ -1,26 +1,25 @@
 <template>
     <div class="panel panel-default" v-cloak>
         <div class="panel-body">
-            <legend>Edit Student</legend>
+            <legend>Edit product</legend>
 
-            <crud-form :student="student"></crud-form>
+            <crud-form v-on:submitted="submit" :product="product"></crud-form>
 
-            <div class="text-center mrg-top-1em">
-                <button class="btn btn-default" v-link="{ name: 'index' }">
-                    <i class="glyphicon glyphicon-chevron-left"></i>
-                    Back
-                </button>
-            </div>
+            <back-button> </back-button>
+
         </div>
     </div>
+
 </template>
 
 <script>
+    import router from '../../routes'
+
     export default {
         created() {
-            this.$http.get('/api/students/' + this.studentId)
+            this.$http.get('/api/products/' + this.productId)
                 .then(response => {
-                    this.student = response.data;
+                    this.product = response.data;
                 })
                 .catch(response => {
                     let alert = {
@@ -29,40 +28,38 @@
                         title: 'Error',
                         message: response.statusText
                     };
-
-                    this.$emit('showAlert', alert);
                 });
         },
         data() {
             return {
-                studentId: this.$route.params.studentId,
-                url: '/api/students/',
-                student: {}
+                productId: this.$route.params.productId,
+                url: '/api/products/',
+                product: {}
             }
         },
         events: {
-            'submitted'(student) {
-                this.submit(student);
+            'submitted'(product) {
+                this.submit(product);
             }
         },
         methods: {
             submit(formData) {
                 formData.set('_method', 'PUT');
-
-                let url = this.url + this.studentId;
-
+                let url = this.url + this.productId;
                 this.$http.post(url, formData)
                     .then(response => {
                         let alert = {
                             show: true,
                             type: 'success',
                             title: 'Success',
-                            message: 'Student successfully updated.'
+                            message: 'Product successfully updated.'
                         };
 
-                        this.$broadcast('showAlert', alert);
+                        router.push({ name: 'products' + '-show', params: {'productId':  this.productId }});
+
                     }).catch(response => {
                         let errors = response.body;
+
                         this.$emit('formErrors', errors);
                     });
             }

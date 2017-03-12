@@ -5,12 +5,7 @@
 
             <crud-form :student="student"></crud-form>
 
-            <div class="text-center mrg-top-1em">
-                <button class="btn btn-default" v-link="{ name: 'index' }">
-                    <i class="glyphicon glyphicon-chevron-left"></i>
-                    Back
-                </button>
-            </div>
+            <back-button> </back-button>
         </div>
     </div>
 </template>
@@ -31,7 +26,7 @@
         events: {
             'submitted'(student) {
                 this.submit(student);
-            },
+            }
         },
         methods: {
             submit(formData) {

@@ -11,6 +11,8 @@ class ProductSeeder extends Seeder
      */
     public function run()
     {
-        //
+        factory(App\Models\Category::class, 10)->create()->each(function ($u) {
+            $u->products()->save(factory(App\Models\Product::class)->make());
+        });
     }
 }

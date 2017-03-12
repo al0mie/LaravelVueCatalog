@@ -1,15 +1,11 @@
 <template>
     <div class="panel panel-default" v-cloak>
         <div class="panel-body">
-            <legend>Create Student</legend>
+            <legend>Create product</legend>
 
-            <crud-form :student="student"></crud-form>
+            <crud-form :product="product"></crud-form>
 
-            <div class="text-center mrg-top-1em">
-                <button class="button is-large is-primary is-fullwidth has-text-centered" @click="back">
-                    Back
-                </button>
-            </div>
+            <back-button> </back-button>
         </div>
     </div>
 </template>
@@ -33,9 +29,6 @@
             }
         },
         methods: {
-            back() {
-                window.history.back();
-            },
             submit(formData) {
                 this.$http.post(this.url, formData)
                     .then(response => {

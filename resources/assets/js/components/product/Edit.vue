@@ -5,9 +5,7 @@
 
             <crud-form v-on:submitted="submit" :product="product"></crud-form>
 
-            <button class="button is-large is-primary is-fullwidth has-text-centered" @click="back">
-                Back
-            </button>
+            <back-button> </back-button>
 
         </div>
     </div>
@@ -45,10 +43,6 @@
             }
         },
         methods: {
-            back() {
-                window.history.back();
-            },
-
             submit(formData) {
                 formData.set('_method', 'PUT');
                 let url = this.url + this.productId;
