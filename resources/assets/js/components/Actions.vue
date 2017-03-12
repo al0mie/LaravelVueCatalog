@@ -40,7 +40,7 @@
         methods: {
             showData(rowData) {
                 console.log(this);
-                console.log(  this.$parent.$options);
+                this.$parent.$emit('custom-action');
                 let $resource = $('table').attr('data-resource');
                 router.push({ name: $resource + '-show', params: {'productId': rowData.id }});
             },

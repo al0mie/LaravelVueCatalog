@@ -13,6 +13,7 @@
                 :ascending-icon="ascendingIcon"
                 :descending-icon="descendingIcon"
                 :append-params="appendParams"
+                v-on:custom-action="allo"
         ></vuetable>
     </div>
 
@@ -103,18 +104,11 @@
             }
         },
         methods: {
-            allcap (value) {
-         //      this.url = '/api/products?category_id=' + this.category;
-            },
-            updateF(value) {
-                alert('z');
+            allo() {
+                alert('zz');
             }
         },
-        events:
-        {
-            'fireEv'() {
-                alert('z1');
-            },
+        events: {
             'showData'(rowData) {
                 console.log(this);
                 router.push({ name: 'index'});

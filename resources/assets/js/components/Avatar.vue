@@ -22,7 +22,7 @@
                 }
 
                 return '/storage/avatars/' + this.rowData.avatar;
-            },
+            }
         }
     }
 </script>

@@ -105,7 +105,6 @@
                 formData.set('description', this.product.description);
 
                 this.$emit('submitted', formData);
-                alert('v');
             }
         },
         events: {
@@ -121,7 +120,7 @@
                 this.$emit('notify', this.alert);
 
                 this.errors = {};
-            },
-        },
+            }
+        }
     }
 </script>

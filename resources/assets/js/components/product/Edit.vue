@@ -5,9 +5,8 @@
 
             <crud-form v-on:submitted="submit" :product="product"></crud-form>
 
-            <div class="button is-large is-primary is-fullwidth has-text-centered">
-                <router-link class="button is-primary is-large" :to="{ name: 'products-index'}">Back</router-link>
-            </div>
+            <router-link class="button is-large is-primary is-fullwidth has-text-centered" :to="{ name: 'products-index'}">Back</router-link>
+
         </div>
     </div>
 

@@ -1,27 +1,13 @@
 <template>
     <div>
-        <div class="row">
-            <div class="col-md-12">
-                <img
-                    class="img-thumbnail img-reponsive image-preview"
-                    :src="imageSrc"
-                    :alt="imageName"
-                    :title="imageName">
-            </div>
+        <div class="column is-half">
+            <img
+                class="image is-128x128"
+                :src="imageSrc"
+                :alt="imageName"
+                :title="imageName">
         </div>
-
-        <div class="row mrg-top-1em">
-            <div class="col-md-12">
-                <div class="image-input btn btn-default">
-                    <span>
-                        <i class="glyphicon glyphicon-camera"></i>
-                        Change
-                    </span>
-
-                    <input @change="preview($event)" name="image" type="file" accept="image/*">
-                </div>
-            </div>
-        </div>
+        <input @change="preview($event)" name="image" type="file" accept="image/*">
     </div>
 </template>
 
@@ -31,7 +17,7 @@
             imageSrc: {
                 type: String,
                 default: '/storage/avatars/default.png'
-            },
+            }
         },
         data() {
             return {
@@ -54,7 +40,7 @@
 
                         reader.readAsDataURL(files[0]);
 
-                        this.$dispatch('avatarUpdated', files[0]);
+                        this.$emit('avatarUpdated', files[0]);
                     }
                 }
             }

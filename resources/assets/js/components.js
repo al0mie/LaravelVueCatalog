@@ -12,7 +12,6 @@ const Actions = require('./components/Actions.vue');
 const Notify = require('./components/Notify.vue');
 const ImageInput = require('./components/ImageInput.vue');
 const CRUDForm = require('./components/CRUDForm.vue');
-const Item = require('./components/Item.vue');
 const ItemList = require('./components/ItemList.vue');
 const ProductIndex = require('./components/product/Index.vue');
 

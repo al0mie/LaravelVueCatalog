@@ -17,9 +17,15 @@
                             {{ product.name }}
                         </p>
                     </div>
+
                     <p>
                         <label>Description:</label>
                         {{ product.description }}
+                    </p>
+
+                    <p>
+                        <label>Category:</label>
+                        {{ category.id}}
                     </p>
 
                 </div>
@@ -37,7 +43,7 @@
             this.$http.get('/api' + this.$route.path)
                 .then(response => {
                     this.product = response.data;
-
+                    this.category = this.product.category;
                     if(! this.product.avatar) {
                         this.product.avatar = 'default.png';
                     }
@@ -56,6 +62,7 @@
         data() {
             return {
                 product: {},
+                category: {},
                 alert: {
                     show: false,
                     type: null,
@@ -66,3 +73,9 @@
         }
     }
 </script>
+
+<style>
+    label {
+        font-weight: bold;
+    }
+</style>

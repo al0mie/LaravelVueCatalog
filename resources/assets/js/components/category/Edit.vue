@@ -63,8 +63,7 @@
                         this.$broadcast('showAlert', alert);
                     }).catch(response => {
                         let errors = response.body;
-
-                        this.$broadcast('formErrors', errors);
+                        this.$emit('formErrors', errors);
                     });
             }
         }
