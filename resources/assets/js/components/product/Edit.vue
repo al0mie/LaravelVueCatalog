@@ -42,14 +42,6 @@
             }
         },
         methods: {
-            greet: function (event) {
-                // `this` inside methods points to the Vue instance
-                alert('Hello ' + this.name + '!')
-                // `event` is the native DOM event
-                if (event) {
-                    alert(event.target.tagName)
-                }
-            },
             submit(formData) {
                 formData.set('_method', 'PUT');
                 let url = this.url + this.productId;

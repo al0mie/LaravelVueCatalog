@@ -16,76 +16,10 @@ const Item = require('./components/Item.vue');
 const ItemList = require('./components/ItemList.vue');
 const ProductIndex = require('./components/product/Index.vue');
 
-var data = {
-    name: 'My Tree',
-    children: [
-        { name: 'hello' },
-        { name: 'wat' },
-        {
-            name: 'child folder',
-            children: [
-                {
-                    name: 'child folder',
-                    children: [
-                        { name: 'hello' },
-                        { name: 'wat' }
-                    ]
-                },
-                { name: 'hello' },
-                { name: 'wat' },
-                {
-                    name: 'child folder',
-                    children: [
-                        { name: 'hello' },
-                        { name: 'wat' }
-                    ]
-                }
-            ]
-        }
-    ]
-};
-
 // define the item component
-// define the item component
-Vue.component('item-list', {
-    template: Item.template,
-    props: {
-        model: Object
-    },
-    data: function () {
-        return {
-            open: false
-        }
-    },
-    computed: {
-        isFolder: function () {
-            return this.model.children &&
-                this.model.children.length
-        }
-    },
-    methods: {
-        toggle: function () {
-            if (this.isFolder) {
-                this.open = !this.open
-            }
-        },
-        changeType: function () {
-            if (!this.isFolder) {
-                Vue.set(this.model, 'children', [])
-                this.addChild()
-                this.open = true
-            }
-        },
-        addChild: function () {
-            this.model.children.push({
-                name: 'new stuff'
-            })
-        }
-    }
-});
-
+Vue.component('item-list', ItemList);
 Vue.component('product-index', ProductIndex);
-Vue.component('list', ItemList);
+
 
 Vue.component('vuetable', Vuetable);
 Vue.component('vuetable-pagination', VuetablePagination);

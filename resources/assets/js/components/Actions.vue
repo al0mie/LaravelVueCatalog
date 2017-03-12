@@ -28,6 +28,7 @@
 
 <script>
     import router from '../routes'
+    import bus from '../Bus.js';
 
     export default {
         props: {
@@ -38,6 +39,8 @@
         },
         methods: {
             showData(rowData) {
+                console.log(this);
+                bus.$emit('contact-refresh');
                 let $resource = $('table').attr('data-resource');
                 router.push({ name: $resource + '-show', params: {'productId': rowData.id }});
             },

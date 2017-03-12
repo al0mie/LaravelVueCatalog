@@ -20,23 +20,26 @@ class CategoryService
         $categories = Category::whereNull('parent_id')->get();
 
         $tree = [];
+        $t = null;
         foreach ($categories as $category) {
             $tree []= $this->buildCategoryPath($category);
         }
 
-        return json_encode($tree);
+        return $tree;
     }
 
     private function buildCategoryPath($node, $data = [])
     {
+
         if (!$node->children->count()) {
-            return ['name' => $node->name];
+            $data = ['name' => $node->name, 'id' => $node->id];
+            return $data;
         } else {
             foreach ($node->children as $child) {
-                $data['name'] = $child->name;
-                $data[$node->name]['children'][] = $this->buildCategoryPath($child, $data);
+                $data['name'] = $node->name;
+                $data['id'] = $node->id;
+                $data['children'][] = $this->buildCategoryPath($child);
             }
-
             return $data;
         }
 

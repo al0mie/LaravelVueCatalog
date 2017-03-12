@@ -1,7 +1,7 @@
 <template>
     <div class="table-responsive" v-cloak>
 
-        <vuetable
+        <vuetable ref="vuetable"
                 :api-url="url"
                 :pagination-path="paginationPath"
                 :per-page="perPage"
@@ -13,31 +13,37 @@
                 :ascending-icon="ascendingIcon"
                 :descending-icon="descendingIcon"
                 :append-params="appendParams"
-                :wrapper-class="wrapperClass"
-                :table-wrapper="tableWrapper"
-                :pagination-component="paginationComponent"
         ></vuetable>
     </div>
 
 </template>
 
 <script>
-    console.log(this);
     import bus from '../../Bus.js'
     export default {
-        data() {
+        props: {
+            category: Number
+        },
+        created() {
+            bus.$on('contact-refresh', function () {
+                console.log(this.$refs);
+            });
+        },
+
+        data(){
+
+
+            let url = '/api/products';
+            if (this.category) {
+                url = url + '?category_id=' + this.category;
+            }
             return {
-                url: '/api/products',
+                url: url,
                 resource: 'products',
                 paginationPath: '',
                 search: '',
                 perPage: 10,
                 fields: [
-                    {
-                        name: '__checkbox',
-                        titleClass: 'text-center col-sm-1',
-                        dataClass: 'text-center'
-                    },
                     {
                         title: 'Index',
                         name: '__sequence',
@@ -84,9 +90,6 @@
                 ascendingIcon: 'glyphicon glyphicon-menu-up pull-right',
                 descendingIcon: 'glyphicon glyphicon-menu-down pull-right',
                 appendParams: {},
-                wrapperClass: 'vuetable-wrapper ',
-                tableWrapper: '.vuetable-wrapper',
-                paginationComponent: 'bootstrap-pagination',
                 alert: {
                     show: false,
                     type: null,
@@ -98,14 +101,17 @@
 
         events:
         {
+            'fireEv'() {
+                alert('z1');
+            },
             'showData'(rowData) {
+                console.log(this);
                 router.push({ name: 'index'});
             },
             'editData'(rowData) {
                 this.$route.router.go({ name: 'edit', params: { productId: rowData.id } })
             },
             'deleteData'(rowData) {
-                alert('xe');
                 swal({
                     title: 'Confirmation',
                     text: 'Are you sure you want to delete this?',

@@ -1,44 +1,62 @@
 <template>
     <div>
-
         <ul id="demo">
-            <list
-                    class="item"
-                    :categories="categories"
+            <item-list
+                class="item"
+                :model="model"
                    >
-            </list>
+            </item-list>
         </ul>
-
-
+        <product-index :category="1"> </product-index>
     </div>
 
 </template>
 
 
 <script>
+    import bus from '../Bus';
+
     export default {
-        created() {
-            this.$http.get('/api/categories')
-                    .then(response => {
-                this.categories = response.data;
 
-        })
-            .catch(response => {
-                    let alert = {
-                        show: true,
-                        type: 'danger',
-                        title: 'Error',
-                        message: response.statusText
-                    };
-
-            this.$emit('showAlert', alert);
-        });
+        props: {
+            category_id: Number
         },
+
+        created() {
+            this.$http.get('/api/categoriesTree')
+                .then(response => {
+                    this.model = {
+                        name: 'My Tree',
+                        children: response.data
+                    };
+                })
+                .catch(response => {
+                        let alert = {
+                            show: true,
+                            type: 'danger',
+                            title: 'Error',
+                            message: response.statusText
+                        };
+                    this.$emit('showAlert', alert);
+                });
+
+            bus.$on('filterCatalog', (category_id) => {
+                alert(this.category_idd++);
+            });
+        },
+
+        computed: {
+            category(category_id) {
+                return category_id;
+            },
+        },
+
         data() {
             return {
-                url: '/api/categories/',
-                categories: {}
+                url: 'categoriesTree',
+                model: {},
+                category_idd: 0
             }
-        },
+        }
     }
 </script>

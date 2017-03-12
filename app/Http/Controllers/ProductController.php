@@ -29,9 +29,13 @@ class ProductController extends Controller
      *
      * @return mixed
      */
-    public function index()
+    public function index(Request $request)
     {
         $products = Product::orderBy('id');
+
+        if ($request->has('category_id')) {
+            $products = $products->where('category_id', $request->get('category_id'));
+        }
 
         return $products->paginate(50);
     }
