@@ -95,7 +95,6 @@
         },
         methods: {
             updateCategory(categoryId) {
-                alert('X');
                 this.categoryId = categoryId;
             },
             submit() {

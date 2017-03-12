@@ -15,11 +15,7 @@
                     <i class="fa fa-dashboard"></i> Categories
                 </router-link>
             </div>
-            <span class="nav-toggle">
-              <span></span>
-              <span></span>
-              <span></span>
-            </span>
+
         </div>
     </nav>
 </template>
