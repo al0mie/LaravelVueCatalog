@@ -24,19 +24,21 @@
         props: {
             category: Number
         },
-        created() {
-            bus.$on('contact-refresh', function () {
-                console.log(this.$refs);
-            });
-        },
+        watch:{
+            'category': {
+                handler:function() {
+                    this.url = '/api/products?category_id=' + this.category;
+                    this.$refs.vuetable.reload();
 
-        data(){
-
-
-            let url = '/api/products';
-            if (this.category) {
-                url = url + '?category_id=' + this.category;
+                    this.$nextTick(function () {
+                        this.url = '/api/products?category_id=' + this.category;
+                        this.$refs.vuetable.reload();
+                    });
+                }
             }
+        },
+        data(){
+            let url = '/api/products';
             return {
                 url: url,
                 resource: 'products',
@@ -68,14 +70,16 @@
                         name: 'description',
                         sortField: 'description',
                         titleClass: 'text-center col-sm-3',
-                        dataClass: 'text-center'
+                        dataClass: 'text-center',
+
                     },
 
                     {
                         title: 'Actions',
                         name: '__component:actions',
                         titleClass: 'text-center col-sm-1',
-                        dataClass: 'text-center'
+                        dataClass: 'text-center',
+
                     }
 
                 ],
@@ -98,7 +102,14 @@
                 }
             }
         },
-
+        methods: {
+            allcap (value) {
+         //      this.url = '/api/products?category_id=' + this.category;
+            },
+            updateF(value) {
+                alert('z');
+            }
+        },
         events:
         {
             'fireEv'() {

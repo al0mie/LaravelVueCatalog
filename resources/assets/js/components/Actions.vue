@@ -40,7 +40,7 @@
         methods: {
             showData(rowData) {
                 console.log(this);
-                bus.$emit('contact-refresh');
+                console.log(  this.$parent.$options);
                 let $resource = $('table').attr('data-resource');
                 router.push({ name: $resource + '-show', params: {'productId': rowData.id }});
             },

@@ -1,10 +1,16 @@
 <template>
     <div>
         <li>
-            <div :class="{bold: isFolder}"
-                 @click="toggle">
-                {{model.name}}
-                <span v-if="isFolder">[{{open ? '-' : '+'}}]</span>
+            <div class="panel-block"  :class="{bold: isFolder}" @click="toggle">
+             <span class="is-success">
+                <span v-if="isFolder" class="panel-icon">
+                    <i class="fa fa-book"></i>
+                </span>
+                    {{model.name}} ( {{model.id}} )
+                <span v-if="isFolder" class="panel-icon">
+                    [{{open ? '-' : '+'}}]
+                </span>
+            </span>
             </div>
             <ul v-show="open" v-if="isFolder">
                 <item-list
@@ -29,21 +35,23 @@ export default {
     },
     data: function () {
         return {
-            open: true
+            open: false,
+            active: false
         }
     },
     computed: {
         isFolder: function () {
             return this.model.children &&
-                    this.model.children.length
+                    this.model.children.length;
         }
     },
     methods: {
         toggle: function () {
             if (this.isFolder) {
-                this.open = !this.open
+                this.open = !this.open;
             }
-            bus.$emit('filterCatalog', this.model.id);
+
+            bus.$emit('contact-refresh', this.model.id);
         }
     }
 }
@@ -51,10 +59,6 @@ export default {
 
 
 <style>
-    body {
-        font-family: Menlo, Consolas, monospace;
-        color: #444;
-    }
     .item {
         cursor: pointer;
     }

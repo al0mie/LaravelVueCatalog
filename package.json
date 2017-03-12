@@ -31,6 +31,8 @@
     "vue-strap": "^1.1.15",
     "vue-style-loader": "^1.0.0",
     "vuetable-2": "^1.2.0",
-    "webpack": "^2.2.0"
+    "webpack": "^2.2.0",
+    "accounting": "^0.4.1",
+    "vue-events": "vue-2.x"
   }
 }

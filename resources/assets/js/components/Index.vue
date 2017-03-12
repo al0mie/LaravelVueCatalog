@@ -1,15 +1,14 @@
 <template>
-    <div>
-        <ul id="demo">
+    <div class="columns">
+        <ul id="categoriesTree" class="tree column is-half">
             <item-list
                 class="item"
                 :model="model"
                    >
             </item-list>
         </ul>
-        <product-index :category="1"> </product-index>
+        <product-index :category="category"  class="column is-half"> </product-index>
     </div>
-
 </template>
 
 
@@ -26,7 +25,7 @@
             this.$http.get('/api/categoriesTree')
                 .then(response => {
                     this.model = {
-                        name: 'My Tree',
+                        name: 'Catalog',
                         children: response.data
                     };
                 })
@@ -40,22 +39,18 @@
                     this.$emit('showAlert', alert);
                 });
 
-            bus.$on('filterCatalog', (category_id) => {
-                alert(this.category_idd++);
-            });
-        },
-
-        computed: {
-            category(category_id) {
-                return category_id;
-            },
+                bus.$on('contact-refresh', (category_id) => {
+                   if (category_id) {
+                       this.category = category_id;
+                   }
+                });
         },
 
         data() {
             return {
                 url: 'categoriesTree',
                 model: {},
-                category_idd: 0
+                category: this.category_id
             }
         }
     }
