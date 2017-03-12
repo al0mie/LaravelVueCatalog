@@ -3,7 +3,7 @@
         <div class="panel-body">
             <legend>Create product</legend>
 
-            <crud-form :product="product" v-on:submitted="submit"></crud-form>
+            <crud-form-product :product="product" v-on:submitted="submit"></crud-form-product>
 
             <back-button> </back-button>
         </div>

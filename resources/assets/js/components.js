@@ -11,15 +11,17 @@ const Avatar = require('./components/Avatar.vue');
 const Actions = require('./components/Actions.vue');
 const Notify = require('./components/Notify.vue');
 const ImageInput = require('./components/ImageInput.vue');
-const CRUDForm = require('./components/CRUDForm.vue');
+const CRUDFormProduct = require('./components/product/CRUDFormProduct.vue');
 const ItemList = require('./components/ItemList.vue');
 const ProductIndex = require('./components/product/Index.vue');
 const BackButton = require('./components/BackButton.vue');
-const CrudFormCategory = require('./components/category/CRUDForm.vue');
+const CRUDFormCategory = require('./components/category/CRUDForm.vue');
 const CategorySelect = require('./components/CategorySelect.vue');
 
 // define the item component
-Vue.component('crud-form-category', CrudFormCategory);
+Vue.component('crud-form-category', CRUDFormCategory);
+Vue.component('crud-form-product', CRUDFormProduct);
+
 Vue.component('category-select', CategorySelect);
 Vue.component('item-list', ItemList);
 Vue.component('product-index', ProductIndex);
