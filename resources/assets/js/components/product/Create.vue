@@ -6,8 +6,7 @@
             <crud-form :student="student"></crud-form>
 
             <div class="text-center mrg-top-1em">
-                <button class="btn btn-default" v-link="{ name: 'index' }">
-                    <i class="glyphicon glyphicon-chevron-left"></i>
+                <button class="button is-large is-primary is-fullwidth has-text-centered" @click="back">
                     Back
                 </button>
             </div>
@@ -31,9 +30,12 @@
         events: {
             'submitted'(student) {
                 this.submit(student);
-            },
+            }
         },
         methods: {
+            back() {
+                window.history.back();
+            },
             submit(formData) {
                 this.$http.post(this.url, formData)
                     .then(response => {

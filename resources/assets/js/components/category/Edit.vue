@@ -30,20 +30,20 @@
                         message: response.statusText
                     };
 
-                    this.$broadcast('showAlert', alert);
+                    this.$emit('showAlert', alert);
                 });
         },
         data() {
             return {
                 studentId: this.$route.params.studentId,
                 url: '/api/students/',
-                student: {},
+                student: {}
             }
         },
         events: {
             'submitted'(student) {
                 this.submit(student);
-            },
+            }
         },
         methods: {
             submit(formData) {

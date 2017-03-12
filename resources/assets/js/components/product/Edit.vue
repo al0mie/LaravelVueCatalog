@@ -5,7 +5,9 @@
 
             <crud-form v-on:submitted="submit" :product="product"></crud-form>
 
-            <router-link class="button is-large is-primary is-fullwidth has-text-centered" :to="{ name: 'products-index'}">Back</router-link>
+            <button class="button is-large is-primary is-fullwidth has-text-centered" @click="back">
+                Back
+            </button>
 
         </div>
     </div>
@@ -13,6 +15,8 @@
 </template>
 
 <script>
+    import router from '../../routes'
+
     export default {
         created() {
             this.$http.get('/api/products/' + this.productId)
@@ -41,6 +45,10 @@
             }
         },
         methods: {
+            back() {
+                window.history.back();
+            },
+
             submit(formData) {
                 formData.set('_method', 'PUT');
                 let url = this.url + this.productId;
@@ -53,11 +61,12 @@
                             message: 'Product successfully updated.'
                         };
 
-                        this.$on('showAlert', alert);
+                        router.push({ name: 'products' + '-show', params: {'productId':  this.productId }});
+
                     }).catch(response => {
                         let errors = response.body;
 
-                        this.$on('formErrors', errors);
+                        this.$emit('formErrors', errors);
                     });
             }
         }
