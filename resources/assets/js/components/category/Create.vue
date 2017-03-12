@@ -1,9 +1,9 @@
 <template>
     <div class="panel panel-default" v-cloak>
         <div class="panel-body">
-            <legend>Create Student</legend>
+            <legend>Create category</legend>
 
-            <crud-form :student="student"></crud-form>
+            <crud-form-category :category="category" v-on:submitted="submit"></crud-form-category>
 
             <back-button> </back-button>
         </div>
@@ -11,21 +11,20 @@
 </template>
 
 <script>
+    import router from '../../routes';
+
     export default {
         data() {
             return {
-                url: '/api/students',
-                student: {
-                    avatar: '',
-                    name: '',
-                    email: '',
-                    birth_date: '',
+                url: '/api/categories',
+                category: {
+                    name: ''
                 }
             }
         },
         events: {
-            'submitted'(student) {
-                this.submit(student);
+            'submitted'(category) {
+                this.submit(category);
             }
         },
         methods: {
@@ -36,24 +35,19 @@
                             show: true,
                             type: 'success',
                             title: 'Success',
-                            message: 'Student successfully created.'
+                            message: 'Category successfully created.'
                         };
-
-                        this.$broadcast('showAlert', alert);
-
+                        this.$emit('showAlert', alert);
                         this.resetForm();
                     }).catch(response => {
                         let errors = response.body;
-
-                        this.$broadcast('formErrors', errors);
+                        this.$emit('formErrors', errors);
                     });
+                    router.push({ name: 'categories-index'});
             },
             resetForm() {
-                this.student = {
-                    avatar: '',
-                    name: '',
-                    email: '',
-                    birth_date: '',
+                this.category = {
+                    name: ''
                 }
             }
         }

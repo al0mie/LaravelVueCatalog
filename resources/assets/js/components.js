@@ -15,8 +15,10 @@ const CRUDForm = require('./components/CRUDForm.vue');
 const ItemList = require('./components/ItemList.vue');
 const ProductIndex = require('./components/product/Index.vue');
 const BackButton = require('./components/BackButton.vue');
+const CrudFormCategory = require('./components/category/CRUDForm.vue');
 
 // define the item component
+Vue.component('crud-form-category', CrudFormCategory);
 Vue.component('item-list', ItemList);
 Vue.component('product-index', ProductIndex);
 Vue.component('back-button', BackButton);

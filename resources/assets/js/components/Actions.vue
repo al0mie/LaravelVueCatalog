@@ -40,11 +40,11 @@
         methods: {
             showData(rowData) {
                 let $resource = $('table').attr('data-resource');
-                router.push({ name: $resource + '-show', params: {'productId': rowData.id }});
+                router.push({ name: $resource + '-show', params: { id: rowData.id }});
             },
             editData(rowData) {
                 let $resource = $('table').attr('data-resource');
-                router.push({ name: $resource + '-edit', params: { productId: rowData.id } });
+                router.push({ name: $resource + '-edit', params: { id: rowData.id } });
             },
             deleteData(rowData) {
                 swal({

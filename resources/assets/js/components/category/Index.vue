@@ -1,22 +1,24 @@
 <template>
-    <div class="table-responsive" v-cloak>
+    <div>
+        <router-link class="button is-primary" :to="{ name: 'categories-create'}">Create</router-link>
+        <div class="table-responsive" v-cloak>
 
-        <vuetable ref="vuetable"
-                :api-url="url"
-                :pagination-path="paginationPath"
-                :per-page="perPage"
-                :fields="fields"
-                :data-resource="resource"
-                :class="classes"
-                :sort-order="sortOrder"
-                :table-class="tableClass"
-                :ascending-icon="ascendingIcon"
-                :descending-icon="descendingIcon"
-                :append-params="appendParams"
-                v-on:refresh-table="refreshTable"
-        ></vuetable>
+            <vuetable ref="vuetable"
+                    :api-url="url"
+                    :pagination-path="paginationPath"
+                    :per-page="perPage"
+                    :fields="fields"
+                    :data-resource="resource"
+                    :class="classes"
+                    :sort-order="sortOrder"
+                    :table-class="tableClass"
+                    :ascending-icon="ascendingIcon"
+                    :descending-icon="descendingIcon"
+                    :append-params="appendParams"
+                    v-on:refresh-table="refreshTable"
+            ></vuetable>
+        </div>
     </div>
-
 </template>
 
 <script>

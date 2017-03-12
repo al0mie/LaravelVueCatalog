@@ -32,8 +32,8 @@
         },
         data() {
             return {
-                productId: this.$route.params.productId,
-                url: '/api/products/',
+                productId: this.$route.params.id,
+                url: '/api/products/' + this.$route.params.id,
                 product: {}
             }
         },
@@ -55,7 +55,7 @@
                             message: 'Product successfully updated.'
                         };
 
-                        router.push({ name: 'products' + '-show', params: {'productId':  this.productId }});
+                        router.push({ name: 'products-show', params: {'productId':  this.productId }});
 
                     }).catch(response => {
                         let errors = response.body;

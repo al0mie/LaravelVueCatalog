@@ -1,9 +1,9 @@
 <template>
     <div class="panel panel-default" v-cloak>
         <div class="panel-body">
-            <legend>Edit product</legend>
+            <legend>Edit category</legend>
 
-            <crud-form v-on:submitted="submit" :product="product"></crud-form>
+            <crud-form-category v-on:submitted="submit" :category="category"></crud-form-category>
 
             <back-button> </back-button>
 
@@ -13,13 +13,13 @@
 </template>
 
 <script>
-    import router from '../../routes'
+    import router from '../../routes';
 
     export default {
         created() {
-            this.$http.get('/api/products/' + this.productId)
+            this.$http.get('/api/categories/' + this.$route.params.id)
                 .then(response => {
-                    this.product = response.data;
+                    this.category = response.data;
                 })
                 .catch(response => {
                     let alert = {
@@ -32,30 +32,30 @@
         },
         data() {
             return {
-                productId: this.$route.params.productId,
-                url: '/api/products/',
-                product: {}
+                categoryId: this.$route.params.id,
+                url: '/api/categories/',
+                category: {}
             }
         },
         events: {
-            'submitted'(product) {
-                this.submit(product);
+            'submitted'(category) {
+                this.submit(category);
             }
         },
         methods: {
             submit(formData) {
                 formData.set('_method', 'PUT');
-                let url = this.url + this.productId;
+                let url = this.url + this.categoryId;
                 this.$http.post(url, formData)
                     .then(response => {
                         let alert = {
                             show: true,
                             type: 'success',
                             title: 'Success',
-                            message: 'Product successfully updated.'
+                            message: 'Category successfully updated.'
                         };
 
-                        router.push({ name: 'products' + '-show', params: {'productId':  this.productId }});
+                        router.push({ name: 'categories-show', params: {'categoryId':  this.categoryId }});
 
                     }).catch(response => {
                         let errors = response.body;

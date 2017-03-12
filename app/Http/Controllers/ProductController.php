@@ -55,7 +55,7 @@ class ProductController extends Controller
         }
 
         $this->productService->saveProduct($request, $product);
-
+        
         return response($product, Response::HTTP_CREATED);
     }
 

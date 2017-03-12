@@ -3,7 +3,7 @@
         <div class="panel-body">
             <legend>Create product</legend>
 
-            <crud-form :product="product"></crud-form>
+            <crud-form :product="product" v-on:submitted="submit"></crud-form>
 
             <back-button> </back-button>
         </div>
@@ -11,21 +11,22 @@
 </template>
 
 <script>
+    import router from '../../routes';
+
     export default {
         data() {
             return {
-                url: '/api/students',
-                student: {
+                url: '/api/products',
+                product: {
                     avatar: '',
                     name: '',
-                    email: '',
-                    birth_date: '',
+                    description: ''
                 }
             }
         },
         events: {
-            'submitted'(student) {
-                this.submit(student);
+            'submitted'(product) {
+                this.submit(product);
             }
         },
         methods: {
@@ -36,24 +37,23 @@
                             show: true,
                             type: 'success',
                             title: 'Success',
-                            message: 'Student successfully created.'
+                            message: 'Product successfully created.'
                         };
 
-                        this.$broadcast('showAlert', alert);
-
+                        this.$emit('showAlert', alert);
                         this.resetForm();
                     }).catch(response => {
                         let errors = response.body;
 
-                        this.$broadcast('formErrors', errors);
+                        this.$emit('formErrors', errors);
                     });
+                    router.push({ name: 'products-index'});
             },
             resetForm() {
-                this.student = {
+                this.product = {
                     avatar: '',
                     name: '',
-                    email: '',
-                    birth_date: '',
+                    description: ''
                 }
             }
         }

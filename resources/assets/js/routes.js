@@ -22,13 +22,13 @@ var router = new VueRouter({
         },
 
         {
-            path: '/products/:productId',
+            path: '/products/:id',
             name: 'products-show',
             component: require('./components/product/Show.vue')
         },
 
         {
-            path: '/products/edit/:productId',
+            path: '/products/edit/:id',
             name: 'products-edit',
             component: require('./components/product/Edit.vue')
         },
@@ -46,13 +46,13 @@ var router = new VueRouter({
         },
 
         {
-            path: '/categories/:productId',
+            path: '/categories/:id',
             name: 'categories-show',
             component: require('./components/category/Show.vue')
         },
 
         {
-            path: '/categories/edit/:productId',
+            path: '/categories/edit/:id',
             name: 'categories-edit',
             component: require('./components/category/Edit.vue')
         }
