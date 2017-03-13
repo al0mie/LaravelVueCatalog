@@ -1,23 +1,22 @@
 <template>
 <div>
     <form @submit.prevent="submit" novalidate v-cloak>
-        <div class="row">
+        <div class="panel">
             <category-select v-on:update-category="updateCategory"> </category-select>
-            <div class="col-md-6">
+            <div>
                 <div
-                    class="form-group"
                     :class="{ 'has-error': errors['name'] }">
-                    <label class="control-label" for="name">
+                    <label class="label" for="name">
                         Name
                     </label>
-
-                    <input
-                        v-model="category.name"
-                        type="text"
-                        class="input"
-                        id="name"
-                        placeholder="Name...">
-
+                    <p>
+                        <input
+                            v-model="category.name"
+                            type="text"
+                            class="input"
+                            id="name"
+                            placeholder="Name...">
+                    </p>
                     <span class="help-block" v-for="error of errors['name']">
                         {{ error }}
                     </span>

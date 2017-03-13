@@ -1,8 +1,8 @@
 <template>
 <div>
     <form @submit.prevent="submit" novalidate v-cloak>
-        <div class="row">
-            <div class="col-md-6 text-center">
+        <div class="panel">
+            <div class="column is-half text-center">
                 <image-input :image-src="imageSrc"></image-input>
 
                 <div class="mrg-top-1em text-danger" v-for="error of errors['avatar']">
@@ -10,45 +10,40 @@
                 </div>
             </div>
 
-            <div class="col-md-6">
-                <div
-                    class="form-group"
-                    :class="{ 'has-error': errors['name'] }">
-                    <label class="control-label" for="name">
-                        Name
-                    </label>
-
+            <div :class="{ 'has-error': errors['name'] }">
+                <label class="label" for="name">
+                    Name
+                </label>
+                <p class="control">
                     <input
                         v-model="product.name"
                         type="text"
                         class="input"
                         id="name"
                         placeholder="Name...">
+                    </p>
+                <span class="help-block" v-for="error of errors['name']">
+                    {{ error }}
+                </span>
+            </div>
+            <category-select v-on:update-category="updateCategory"> </category-select>
 
-                    <span class="help-block" v-for="error of errors['name']">
-                        {{ error }}
-                    </span>
-                </div>
-                <category-select v-on:update-category="updateCategory"> </category-select>
-                <div
-                    class="form-group"
-                    :class="{ 'has-error': errors['description'] }">
-                    <label class="control-label" for="description">
-                        Description
-                    </label>
+            <div :class="{ 'has-error': errors['description'] }">
+                <label class="label" for="description">
+                    Description
+                </label>
 
+                <p class="control">
                     <textarea
                         v-model="product.description"
                         class="textarea"
                         id="description"
                         placeholder="Description...">
-
                     </textarea>
-
-                    <span class="help-block" v-for="error of errors['description']">
-                        {{ error }}
-                    </span>
-                </div>
+                </p>
+                <span class="help-block" v-for="error of errors['description']">
+                    {{ error }}
+                </span>
             </div>
         </div>
 

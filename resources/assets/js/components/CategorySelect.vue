@@ -1,9 +1,18 @@
 <template>
-    <select v-model="selected" name="category_id" @change="categoryChanged">
-        <option v-for="option in options" v-bind:value="option.id">
-            {{ option.name }}
-        </option>
-    </select>
+    <div>
+        <label class="label" for="category_id">
+            Category
+        </label>
+        <p class="control">
+            <span class="select">
+                <select v-model="selected" name="category_id" @change="categoryChanged">
+                    <option v-for="option in options" v-bind:value="option.id" id="category_id">
+                        {{ option.name }}
+                    </option>
+                </select>
+             </span>
+        </p>
+    </div>
 </template>
 
 <script>

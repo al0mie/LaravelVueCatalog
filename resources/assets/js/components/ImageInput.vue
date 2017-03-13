@@ -7,7 +7,9 @@
                 :alt="imageName"
                 :title="imageName">
         </div>
-        <input @change="preview($event)" name="image" type="file" accept="image/*">
+        <p class="control">
+            <input @change="preview($event)" name="image" type="file" accept="image/*">
+        </p>
     </div>
 </template>
 
