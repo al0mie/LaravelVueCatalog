@@ -60,7 +60,10 @@
                 let formData = new FormData();
 
                 formData.set('name', this.category.name);
-                formData.set('category_id', this.parentId);
+
+                if (this.parentId) {
+                    formData.set('category_id', this.parentId);
+                }
 
                 this.$emit('submitted', formData);
             }

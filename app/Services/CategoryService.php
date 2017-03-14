@@ -14,6 +14,7 @@ class CategoryService
     {
         $category->name = $request->name;
         $category->save();
+  
         if ($request->category_id) {
             $parentCategory = Category::find($request->category_id);
             $category->makeChildOf($parentCategory);
