@@ -1,5 +1,4 @@
 /node_modules
-/public/storage
 /public/hot
 /storage/*.key
 /vendor
@@ -12,4 +11,3 @@ Homestead.yaml
 /public/js
 /public/mix-manifest.json
 /public/fonts
-!/public/storage/avatars/default.png

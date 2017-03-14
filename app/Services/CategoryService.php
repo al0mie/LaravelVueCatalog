@@ -47,7 +47,12 @@ class CategoryService
             
             return $data;
         }
+    }
 
+    public function deleteCategory($id)
+    {
+        $category = Category::find($id);
+        $category->delete();
     }
 
 }
