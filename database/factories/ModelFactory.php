@@ -17,6 +17,6 @@ $factory->define(App\Models\Product::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->name,
         'description' => $faker->text(100),
-        'category_id' => 1
+        'category_id' => rand(1, 9)
     ];
 });
