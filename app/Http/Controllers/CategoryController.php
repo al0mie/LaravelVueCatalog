@@ -49,7 +49,8 @@ class CategoryController extends Controller
 
     public function destroy($id)
     {
-        Category::destroy($id);
+        $category = Category::find($id);
+        $category->delete();
     }
 
     public function categoryProducts($id)
